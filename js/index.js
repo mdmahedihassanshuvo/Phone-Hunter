@@ -33,12 +33,31 @@ const displayPhone = (phones, dataLimit) => {
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <p class="card-text">${phone.slug}</p>
+                <button onclick="showDetails('${phone.slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show-modal">Details</button>
             </div>
         </div>
         `
         colContainer.appendChild(col);
     });
     loadSpinner(false);
+}
+
+const showDetails = async id =>{
+    const url =`https://openapi.programming-hero.com/api/phone/${id}`
+    const res = await fetch(url)
+    const data = await res.json()
+    displayPhoneDetails(data.data)
+}
+
+const displayPhoneDetails = phone =>{
+    console.log(phone);
+    const modalTitle = document.getElementById('show-phone-title');
+    modalTitle.innerText = phone.name;
+    const body = document.getElementById('modal-body');
+    body.innerHTML =`
+    <p>${phone.releaseDate ? phone.releaseDate : 'not found releasedDate'}</p>
+    <p>${phone.mainFeatures ? phone.mainFeatures.memory : 'not found'}</p>
+    `
 }
 
 const processSearch = (dataLimit) =>{
@@ -50,6 +69,12 @@ const processSearch = (dataLimit) =>{
 
 document.getElementById('phone-src').addEventListener('click', function(){
     processSearch(9);
+})
+
+document.getElementById('Search-input').addEventListener('keypress', function(e){
+    if (e.key === "Enter") {
+        processSearch(9);
+      }
 })
 
 const loadSpinner = isLoading =>{
@@ -65,3 +90,5 @@ const loadSpinner = isLoading =>{
 document.getElementById('showall-btn').addEventListener('click', function(){
     processSearch();
 })
+
+// loadPhones('iphone');

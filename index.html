@@ -12,14 +12,14 @@
 <body>
     <header class="container mt-5">
         <div class="mb-3 d-flex">
-            <input type="email" class="form-control w-25" id="Search-input" placeholder="Search your phone">
+            <input type="text" class="form-control w-25" id="Search-input" placeholder="Search your phone">
             <button id="phone-src" class="btn btn-primary">Search</button>
-          </div>
+        </div>
     </header>
     <main>
         <section class="container mt-5">
             <div id="col-container" class="row row-cols-1 row-cols-md-3 g-4">
-                
+
             </div>
             <div id="error" class="text-center d-none">
                 <p>This phone aren't Available!</p>
@@ -35,9 +35,29 @@
         <section class="container">
             <div id="loader" style="height: 400px;" class="d-flex justify-content-center align-items-center d-none">
                 <div class="spinner-border text-success" role="status">
-                  <span class="visually-hidden">Loading...</span>
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-              </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="modal fade" id="show-modal" tabindex="-1" aria-labelledby="show-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="show-phone-title"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="modal-body" class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 
